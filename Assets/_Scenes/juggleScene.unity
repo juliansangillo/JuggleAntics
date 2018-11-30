@@ -113,6 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &195819403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195819404}
+  m_Layer: 0
+  m_Name: BallSpawner3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &195819404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 195819403}
+  m_LocalRotation: {x: -0.5423012, y: 0.39387468, z: 0.39319852, w: 0.6294181}
+  m_LocalPosition: {x: 0.31, y: -5.67, z: 5.07}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 1771454607}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -82.936005, y: 34.335003, z: 33.446003}
 --- !u!1 &241833616
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,13 +162,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241833616}
-  m_LocalRotation: {x: -0.6689839, y: -0.0036901268, z: 0.019581858, w: 0.74300987}
-  m_LocalPosition: {x: -1.07, y: -3.61, z: 4.7}
+  m_LocalRotation: {x: -0.6669616, y: -0.08696348, z: -0.055539317, w: 0.7379126}
+  m_LocalPosition: {x: -0.45794916, y: -3.61, z: 4.9788904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1771454607}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -83.70901, y: -16.807001, z: 18.097}
+  m_LocalEulerAnglesHint: {x: -83.70901, y: -29.681002, z: 18.097}
+--- !u!1 &792508185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792508186}
+  m_Layer: 0
+  m_Name: BallSpawner4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &792508186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792508185}
+  m_LocalRotation: {x: -0.6669616, y: -0.08696348, z: -0.055539317, w: 0.7379126}
+  m_LocalPosition: {x: -0.51, y: -5.7, z: 5.38}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1771454607}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -83.70901, y: -29.681002, z: 18.097}
 --- !u!1 &874199744
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +676,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballFab: {fileID: 1750497982148390, guid: 33c6bb8f958a9264094487c09a8d8535, type: 2}
-  spawner: {fileID: 241833616}
+  spawner:
+  - {fileID: 874199744}
+  - {fileID: 241833616}
+  - {fileID: 195819403}
+  - {fileID: 792508185}
   force: 600
 --- !u!4 &1771454607
 Transform:
@@ -634,6 +694,8 @@ Transform:
   m_Children:
   - {fileID: 874199745}
   - {fileID: 241833617}
+  - {fileID: 195819404}
+  - {fileID: 792508186}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
