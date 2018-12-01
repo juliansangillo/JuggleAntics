@@ -6,16 +6,6 @@ using UnityEngine;
 public class Balldirection : MonoBehaviour {
     
     private Rigidbody rb;
-    
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,16 +16,9 @@ public class Balldirection : MonoBehaviour {
             rb.constraints = RigidbodyConstraints.FreezePositionZ;
             
             if (this.name == "Left Hand")
-            { 
                 rb.AddForce(Vector3.right * 2, ForceMode.Impulse);
-                //rb.AddForce(Vector3.up * 2, ForceMode.Impulse); // no need
-            }
-
             else
-            { 
                 rb.AddForce(Vector3.left * 2, ForceMode.Impulse);
-
-            }
         }
     }
 
