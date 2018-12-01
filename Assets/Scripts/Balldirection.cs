@@ -19,17 +19,10 @@ public class Balldirection : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Ball(Clone)") // Ball alone wasn't working but Ball(Clone) Does
-        {
-            Debug.Log("This Works");
-
-            //  rb = GetComponent<Rigidbody>();
-            //  rb = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
-            
-
-
-            // Destroy(collision.gameObject); // destroy's the ball just for practice
-
+        if(collision.gameObject.tag == "Ball") // I forgot that tags existed! It just occured to me that a tag would work better
+        {                                      // here since the name of each clone could be different.
+            rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezePositionZ;
         }
     }
 
