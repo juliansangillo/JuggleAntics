@@ -6,6 +6,7 @@ using UnityEngine;
 public class Balldirection : MonoBehaviour {
     
     private Rigidbody rb;
+    public static int score;
     
     // Use this for initialization
     void Start () {
@@ -19,8 +20,9 @@ public class Balldirection : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ball") // I forgot that tags existed! It just occured to me that a tag would work better
-        {                                      // here since the name of each clone could be different.
+       
+        if(collision.gameObject.tag == "Ball") 
+        {                                      
             rb = collision.gameObject.GetComponent<Rigidbody>();
 
             rb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -28,14 +30,21 @@ public class Balldirection : MonoBehaviour {
             if (this.name == "Left Hand")
             { 
                 rb.AddForce(Vector3.right * 2, ForceMode.Impulse);
-                //rb.AddForce(Vector3.up * 2, ForceMode.Impulse); // no need
+
+                score += 10;
+                
+
             }
 
-            else
+            else if (this.name == "Right hand")
             { 
                 rb.AddForce(Vector3.left * 2, ForceMode.Impulse);
+                score += 10;
+                
+
 
             }
+            Debug.Log(score);
         }
     }
 

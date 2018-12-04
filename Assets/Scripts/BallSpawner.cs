@@ -7,35 +7,49 @@ public class BallSpawner : MonoBehaviour {
 	public int force;
 	private Rigidbody rb;
 
-	// Use this for initialization
-	void Start () {
+    public int bcount = 0;
+    bool lh = false;
+    bool rh = false;
+    
+
+
+    // Use this for initialization
+    void Start () {
 		spawnBall();
 	}
-	
-	void spawnBall() {
 
-		GameObject spawn = spawner[0];
+    void spawnBall() {
 
-		int choice = Random.Range(0, 4);
+        GameObject spawn = spawner[0];
 
-		switch (choice) {
-			case 1:
-				spawn = spawner[1];
-				break;
-			case 2:
-				spawn = spawner[2];
-				break;
-			case 3:
-				spawn = spawner[3];
-				break;
-			default:
-				spawn = spawner[0];
-				break;
-		}
+        int choice = Random.Range(0, 4);
 
-		GameObject ball = Instantiate(ballFab, spawn.transform.position, spawn.transform.rotation);
-		rb = ball.GetComponent<Rigidbody>();
-		rb.AddForce(spawn.transform.forward * force);
+        switch (choice) {
+            case 1:
+                spawn = spawner[1];
+                break;
+            case 2:
+                spawn = spawner[2];
+                break;
+            case 3:
+                spawn = spawner[3];
+                break;
+            default:
+                spawn = spawner[0];
+                break;
+        }
 
-	}
+       
+        GameObject ball = Instantiate(ballFab, spawn.transform.position, spawn.transform.rotation);
+        rb = ball.GetComponent<Rigidbody>();
+        rb.AddForce(spawn.transform.forward * force);
+        bcount++;
+        Debug.Log("bcount is " + bcount);
+
+
+
+    }
+
+
+
 }
