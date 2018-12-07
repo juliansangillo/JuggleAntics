@@ -7,10 +7,8 @@ public class BallSpawner : MonoBehaviour {
 	public int force;
 	private Rigidbody rb;
 
-    public int bcount = 0;
-    bool lh = false;
-    bool rh = false;
-    
+    public static int bcount = 0;
+
 
 
     // Use this for initialization
@@ -39,13 +37,16 @@ public class BallSpawner : MonoBehaviour {
                 break;
         }
 
-       
+//	for(int i=0;i < 5; i++)
+	//{
+
         GameObject ball = Instantiate(ballFab, spawn.transform.position, spawn.transform.rotation);
         rb = ball.GetComponent<Rigidbody>();
         rb.AddForce(spawn.transform.forward * force);
         bcount++;
-        Debug.Log("bcount is " + bcount);
 
+        Debug.Log("bcount is " + bcount);
+//	}
 
 
     }
