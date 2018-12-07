@@ -4,22 +4,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Balldirection : MonoBehaviour {
-    
+
+    //References
+    public GameObject ballFab;
     private Rigidbody rb;
+
+    //Constants
+    private float G;
+
+    //Variables
+    private float distance;
+    private float timeOfFlight;
+    private Vector3 veloc;
+
+    void Start(){
+
+        G = 9.81f;
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ball") // I forgot that tags existed! It just occured to me that a tag would work better
-        {                                      // here since the name of each clone could be different.
-            rb = collision.gameObject.GetComponent<Rigidbody>();
 
+        if(collision.gameObject.tag == "Ball") {
+            rb = collision.gameObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezePositionZ;
+
+            distance = 3;
+            timeOfFlight = 1.7f;
+            if (gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero) {
+                distance /= 1.5f;
+                timeOfFlight += 0.1f;
+            }
+
+            veloc.x = distance / timeOfFlight;
+            veloc.y = 0.5f * G * timeOfFlight;
+            veloc.z = 0;
+
+            if (gameObject.tag == "Right") {
+                veloc.x = -veloc.x;
+                if (Input.GetButton("RHandRight"))
+                    veloc.x = -veloc.x;
+            }
+            else if (gameObject.tag == "Left" && Input.GetButton("LHandLeft"))
+                veloc.x = -veloc.x;
             
-            if (this.name == "Left Hand")
-                rb.AddForce(Vector3.right * 2, ForceMode.Impulse);
-            else
-                rb.AddForce(Vector3.left * 2, ForceMode.Impulse);
+            rb.velocity = veloc;
         }
+
     }
 
 }
