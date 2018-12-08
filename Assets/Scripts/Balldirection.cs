@@ -11,7 +11,7 @@ public class Balldirection : MonoBehaviour {
 
     //Constants
     private float G;
-
+    public static int score;
     //Variables
     private float distance;
     private float timeOfFlight;
@@ -26,7 +26,9 @@ public class Balldirection : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
 
+
         if(collision.gameObject.tag == "Ball") {
+            score += 10;
             rb = collision.gameObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezePositionZ;
 
@@ -48,7 +50,7 @@ public class Balldirection : MonoBehaviour {
             }
             else if (gameObject.tag == "Left" && Input.GetButton("LHandLeft"))
                 veloc.x = -veloc.x;
-            
+
             rb.velocity = veloc;
         }
 
