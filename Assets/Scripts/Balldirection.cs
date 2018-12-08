@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Balldirection : MonoBehaviour {
 
     //References
     public GameObject ballFab;
     private Rigidbody rb;
-
     //Constants
     private float G;
-    public static int score;
     //Variables
+    private int score;
     private float distance;
     private float timeOfFlight;
     private Vector3 veloc;
 
     void Start(){
 
+        score = 0;
         G = 9.81f;
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-
 
         if(collision.gameObject.tag == "Ball") {
             score += 10;

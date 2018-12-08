@@ -15,9 +15,9 @@ public class LeftHandMotion : MonoBehaviour {
 	void FixedUpdate () {
 
 		if (Input.GetButton("LHandRight"))
-			rb.velocity = Vector3.right * speed;//transform.Translate(speed * Vector3.right * Time.deltaTime);
+			rb.velocity = Vector3.right * speed;
 		else if (Input.GetButton("LHandLeft"))
-			rb.velocity = Vector3.left * speed;//transform.Translate(speed * Vector3.left * Time.deltaTime);
+			rb.velocity = Vector3.left * speed;
 		else
 			rb.velocity = Vector3.zero;
 	}
