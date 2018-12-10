@@ -1,22 +1,15 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class End : MonoBehaviour {
 
-	public GameObject[] obj;
-	public GameObject can;
-	private static GameObject o1;
-	private static GameObject o2;
-	private static GameObject o3;
-	private static GameObject canvas;
+	public GameObject init;
+	public GameObject endPanel;
 	private bool isPlaying;
 
 	void Start() {
 
 		isPlaying = true;
-		o1 = obj[0];
-		o2 = obj[1];
-		o3 = obj[2];
-		canvas = can;
 
 	}
 
@@ -26,33 +19,33 @@ public class End : MonoBehaviour {
 			Destroy(col.gameObject);
 
 			if (isPlaying) {
-				isPlaying = false;
 				gameOver();
 			}
 		}
 
 	}
 
-	public static void gameOver() {
+	public void gameOver() {
 
-		disableScene();
+		isPlaying = false;
+		init.GetComponent<Initiator>().disableScene();
+
+		if (Counter.getScore() > DataManager.highScore.Score) {
+			DataManager.Save(Counter.getBalls(), Counter.getScore());
+			endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "NEW ";
+		}
+		else
+			endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+
+		endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text += "High Score-> Balls: " + DataManager.highScore.Balls + " Score: " + DataManager.highScore.Score;
+
 		enableUI();
 
 	}
 
-	static void disableScene() {
+	void enableUI() {
 
-		o1.GetComponent<LeftHandMotion>().enabled = false;
-		o1.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		o2.GetComponent<RightHandMotion>().enabled = false;
-		o2.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		o3.GetComponent<BallSpawner>().enabled = false;
-
-	}
-
-	static void enableUI() {
-
-		canvas.SetActive(true);
+		endPanel.SetActive(true);
 
 	}
 

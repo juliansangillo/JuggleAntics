@@ -1,21 +1,33 @@
 ﻿using UnityEngine;
+using System.IO; //Delete Before Final Build
 
 public class Balldirection : MonoBehaviour {
 
     //References
     public GameObject ballFab;
+    private GameObject countManage;
     private Rigidbody rb;
     //Constants
     private float G;
     //Variables
-    private int score;
     private float distance;
     private float timeOfFlight;
     private Vector3 veloc;
 
+    //Dummy Awake Function for Developer
+    void Awake() {
+
+        if (File.Exists(Application.dataPath + DataManager.path))
+			DataManager.Load();
+		else
+			DataManager.Save(0, 0);
+
+    }
+    //Delete Before Final Build
+
     void Start(){
 
-        score = 0;
+        countManage = GameObject.Find("Counter Manager");
         G = 9.81f;
 
     }
@@ -24,15 +36,15 @@ public class Balldirection : MonoBehaviour {
     {
 
         if(collision.gameObject.tag == "Ball") {
-            score += 10;
+            if (countManage.GetComponent<Counter>().enabled)
+                Counter.incrementScore();
             rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezePositionZ;
-
+            
             distance = 3;
             timeOfFlight = 1.7f;
-            if (gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero) {
-                distance /= 1.5f;
-                timeOfFlight += 0.1f;
+            if (gameObject.GetComponent<HandMotion>().IsAtRest) {
+                distance /= 2f;
+                timeOfFlight += 0.2f;
             }
 
             veloc.x = distance / timeOfFlight;

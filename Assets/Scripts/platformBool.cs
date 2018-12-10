@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class platformBool : MonoBehaviour {
 
+	private GameObject bounds;
 	private bool LH;
 	private bool RH;
 
 	// Use this for initialization
 	void Start () {
 
+		bounds = GameObject.Find("OutOfBounds");
 		LH=false;
 		RH=false;
 	
@@ -17,10 +19,10 @@ public class platformBool : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
-		
+
 		if((col.gameObject.name == "Left Hand" && LH == true) || (col.gameObject.name == "Right hand" && RH == true)) 
 		{  
-			End.gameOver();
+			bounds.GetComponent<End>().gameOver();
 		}
 		else if(col.gameObject.name == "Left Hand")
 		{
