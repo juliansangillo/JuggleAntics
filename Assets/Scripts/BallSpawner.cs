@@ -10,7 +10,7 @@ public class BallSpawner : MonoBehaviour {
     private GameObject countManage;
     private GameObject ball;
     private IEnumerator cor;
-    private int scoreBar = 200;
+    private int scoreBar = 100;
 
     // Use this for initialization
     void Start () {
@@ -44,9 +44,11 @@ public class BallSpawner : MonoBehaviour {
 
     IEnumerator spawnSequence() {
 
-        yield return new WaitUntil(() => Counter.getScore() == scoreBar);
-        spawnBall();
-        scoreBar += 200;
+        while(true) {
+            yield return new WaitUntil(() => Counter.getScore() == scoreBar);
+            spawnBall();
+            scoreBar += 100;
+        }
 
     }
 
