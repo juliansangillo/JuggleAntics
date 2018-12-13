@@ -18,29 +18,27 @@ public class End : MonoBehaviour {										//This class handles the end game. I
 
 		if (col.gameObject.tag == "Ball") {
 			Destroy(col.gameObject);									//Destroys the ball that tripped the trigger
-
-			if (isPlaying) {
-				gameOver();												//If the game has not already ended, call gameOver
-			}
+			gameOver();													//Enter end game
 		}
 
 	}
 
 	public void gameOver() {											//Disables scene and ends the game
 
-		isPlaying = false;
-		init.GetComponent<Initiator>().disableScene();
+		if (isPlaying) {												//If the game has not already end
+			isPlaying = false;
+			init.GetComponent<Initiator>().disableScene();
 
-		if (Counter.getScore() > DataManager.highScore.Score) {			//Saves new highScore if there is one
-			DataManager.Save(Counter.getBalls(), Counter.getScore());
-			endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "NEW ";
-		}
-		else
 			endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			if (Counter.getScore() > DataManager.highScore.Score) {			//Saves new highScore if there is one
+				DataManager.Save(Counter.getBalls(), Counter.getScore());
+				endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text += "NEW ";
+			}
 
-		endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text += "High Score-> Balls: " + DataManager.highScore.Balls + " Score: " + DataManager.highScore.Score;
+			endPanel.GetComponent<Transform>().GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text += "High Score-> Balls: " + DataManager.highScore.Balls + " Score: " + DataManager.highScore.Score;
 
-		enableUI();														//Displays the endPanel
+			enableUI();														//Displays the endPanel
+		}
 
 	}
 
