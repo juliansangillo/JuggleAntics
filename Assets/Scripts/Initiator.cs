@@ -3,20 +3,21 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 
-public class Initiator : MonoBehaviour {
+public class Initiator : MonoBehaviour {								//This class handles the initial countdown and start sequence of the juggleScene
 
-	public GameObject initPanel;
-	public GameObject[] obj;
-	private IEnumerator initSeq;
+	public GameObject initPanel;										//The panel that displays initial countdown
+	public GameObject[] obj;											//Objects directly influencing scene
+	private IEnumerator initSeq;										//IEnumerator needed for a coroutine of initSequence
 
 	void Start () {
 
+		//Initialization
 		initSeq = initSequence();
 		StartCoroutine(initSeq);
 
 	}
 
-	void enableScene() {
+	void enableScene() {												//This enables the scene for play by enabling functionality of the influencing objects
 
 		obj[0].GetComponent<HandMotion>().enabled = true;
 		obj[1].GetComponent<HandMotion>().enabled = true;
@@ -24,7 +25,7 @@ public class Initiator : MonoBehaviour {
 
 	}
 	
-	public void disableScene() {
+	public void disableScene() {										//This disables the functionality of influencing objects, thus disabling the scene
 
 		obj[0].GetComponent<HandMotion>().enabled = false;
 		obj[0].GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -35,7 +36,7 @@ public class Initiator : MonoBehaviour {
 
 	}
 
-	IEnumerator initSequence() {
+	IEnumerator initSequence() {										//This performs the initial countdown and enables the scene when countdown has passed
 
 		yield return new WaitForSeconds(1f);
 		for (int i = 3; i > 0; i--) {

@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class Counter : MonoBehaviour {
+public class Counter : MonoBehaviour {											//This class manages the ball count and current score
 
-	private static GameObject ballCount;
-	private static GameObject scoreCount;
-	private static int ball;
-	private static int score;
+	private static GameObject ballCount;										//Counter to display balls
+	private static GameObject scoreCount;										//Counter to display current score
+	private static int ball;													//Number of balls currently in scene
+	private static int score;													//Current score
 
-	// Use this for initialization
 	void Start () {
 		
+		//Initialization
 		ballCount = GameObject.Find("Ball Counter");
 		scoreCount = GameObject.Find("Score Counter");
 
@@ -19,27 +19,27 @@ public class Counter : MonoBehaviour {
 
 	}
 
-	public static void incrementBall() {
+	public static void incrementBall() {										//Increment's number of balls by 1 and displays new value
 
 		ball++;
 		ballCount.GetComponent<TextMeshProUGUI>().text = ball.ToString();
 
 	}
 
-	public static void incrementScore() {
+	public static void incrementScore() {										//Increment's current score by 10 and displays new value
 
 		score += 10;
 		scoreCount.GetComponent<TextMeshProUGUI>().text = score.ToString();
 
 	}
 
-	public static int getBalls() {
+	public static int getBalls() {												//Gets number of balls
 
 		return ball;
 
 	}
 
-	public static int getScore() {
+	public static int getScore() {												//Gets current score
 
 		return score;
 
